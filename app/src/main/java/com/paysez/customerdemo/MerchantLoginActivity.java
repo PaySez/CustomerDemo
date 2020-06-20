@@ -15,7 +15,7 @@ import com.paysez.library.PaymentLinkHelper;
 
 
 public class MerchantLoginActivity extends AppCompatActivity implements View.OnClickListener {
-    EditText user_name, pwd;
+    EditText mid, tid;
     Button btn_login;
 
     @Override
@@ -29,8 +29,9 @@ public class MerchantLoginActivity extends AppCompatActivity implements View.OnC
 
 
     private void PrepareUI() {
-        user_name = findViewById(R.id.username);
-        pwd = findViewById(R.id.password);
+        mid = findViewById(R.id.mid);
+        tid = findViewById(R.id.tid);
+
         btn_login = findViewById(R.id.login);
     }
 
@@ -41,8 +42,8 @@ public class MerchantLoginActivity extends AppCompatActivity implements View.OnC
         if (view.getId() == R.id.login) {
             Intent intent = new Intent(this, PaymentLinkHelper.class);
             intent.putExtra("request_for", "login");
-            intent.putExtra("username", user_name.getText().toString());
-            intent.putExtra("password", pwd.getText().toString());
+            intent.putExtra("mid", mid.getText().toString());
+            intent.putExtra("tid", tid.getText().toString());
             startActivityForResult(intent, 1);
 
 
@@ -54,13 +55,13 @@ public class MerchantLoginActivity extends AppCompatActivity implements View.OnC
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == 1 && requestCode == 1) {
-            Intent intent = data;
+            //  Intent intent = data;
 
 
-            String status = intent.getStringExtra("status");
+            String status = data.getStringExtra("status");
             if (status.equalsIgnoreCase("00")) {
-                String mid = intent.getStringExtra("mid");
-                String uname = intent.getStringExtra("username");
+                String mid = data.getStringExtra("mid");
+                String uname = data.getStringExtra("username");
                 Intent intent1 = new Intent(this, PaymentLinksActivity.class);
                 intent1.putExtra("mid", mid);
                 intent1.putExtra("uname", uname);
@@ -74,7 +75,7 @@ public class MerchantLoginActivity extends AppCompatActivity implements View.OnC
             }
 
             if (status.equalsIgnoreCase("02")) {
-                String error_msg = intent.getStringExtra("error_msg");
+                String error_msg = data.getStringExtra("error_msg");
 
                 Toast.makeText(this, error_msg, Toast.LENGTH_SHORT).show();
 

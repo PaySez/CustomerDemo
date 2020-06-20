@@ -16,16 +16,15 @@ import com.paysez.library.PaymentLinkHelper;
 import java.util.UUID;
 
 public class PaymentLinksActivity extends AppCompatActivity {
-    EditText amount, purpose, mobile, whatsapp_number, email_id;
+    EditText amount, purpose, mobile, whatsapp_number, email_id, customer_name;
     Button Generate, links;
     String mid, uname;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_links);
-
+        customer_name = findViewById(R.id.customer_name);
         amount = findViewById(R.id.amount);
         purpose = findViewById(R.id.purpose);
         mobile = findViewById(R.id.mobile);
@@ -68,8 +67,7 @@ public class PaymentLinksActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
-    {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 2 && resultCode == 2) {
 
@@ -82,7 +80,7 @@ public class PaymentLinksActivity extends AppCompatActivity {
             intent.putExtra("merchant_name", data.getStringExtra("merchant_name"));
             intent.putExtra("paylink", data.getStringExtra("paylink"));
             intent.putExtra("mobile", mobile.getText().toString());
-
+            intent.putExtra("cust_name", customer_name.getText().toString());
             intent.putExtra("email", email_id.getText().toString());
             intent.putExtra("amt", amount.getText().toString());
             intent.putExtra("nm", uname);
@@ -94,7 +92,7 @@ public class PaymentLinksActivity extends AppCompatActivity {
         }
         if (requestCode == 5 && resultCode == 5) {
             String response = data.getStringExtra("link_data");
-
+            Log.v("sadsadasd", response);
             Intent intent = new Intent(this, RecyclerViewActivity.class);
             intent.putExtra("data", response);
             startActivity(intent);
