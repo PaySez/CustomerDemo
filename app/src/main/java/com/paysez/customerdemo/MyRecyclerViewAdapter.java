@@ -13,6 +13,7 @@ import com.paysez.library.Responses.Datum;
 
 import java.util.List;
 
+
 public class MyRecyclerViewAdapter extends RecyclerView
         .Adapter<MyRecyclerViewAdapter
         .DataObjectHolder> {
@@ -24,7 +25,7 @@ public class MyRecyclerViewAdapter extends RecyclerView
             implements View
             .OnClickListener {
         TextView merchant_name, unique_id, amount, purchase_purpose, trans_id, trans_status, link_creation_date, link_expiry_date, paylink_url, link_expiry_status, pay_status_code;
-
+        TextView rrn_no, trans_type, masked_card;
 
         public DataObjectHolder(View itemView) {
             super(itemView);
@@ -39,6 +40,9 @@ public class MyRecyclerViewAdapter extends RecyclerView
             link_creation_date = itemView.findViewById(R.id.link_creation_date);
             link_expiry_date = itemView.findViewById(R.id.link_expiry_date);
             pay_status_code = itemView.findViewById(R.id.pay_status_code);
+            rrn_no = itemView.findViewById(R.id.rrn_no);
+            trans_type = itemView.findViewById(R.id.trans_type);
+            masked_card = itemView.findViewById(R.id.masked_card);
 
             Log.i(LOG_TAG, "Adding Listener");
             itemView.setOnClickListener(this);
@@ -107,6 +111,36 @@ public class MyRecyclerViewAdapter extends RecyclerView
 
         holder.link_expiry_status.setText("link_expiry_status " + mDataset.get(position).getLinkExpiryStatus());
         holder.pay_status_code.setText("pay_status_code " + mDataset.get(position).getPayStatusCode());
+
+
+        if ((mDataset.get(position).getRrnNo() == null)) {
+            holder.rrn_no.setText("RRN No " + "Not Found");
+
+        } else {
+
+            holder.rrn_no.setText("RRN No " + mDataset.get(position).getRrnNo());
+
+        }
+
+
+        if ((mDataset.get(position).getTransType() == null)) {
+            holder.trans_type.setText("Trans Type " + "Not Found");
+
+        } else {
+
+            holder.trans_type.setText("Trans Type " + mDataset.get(position).getTransType());
+
+        }
+
+        if ((mDataset.get(position).getMaskedCard() == null)) {
+            holder.masked_card.setText("Masked Card " + "Not Found");
+
+        } else {
+
+            holder.masked_card.setText("Masked Card " + mDataset.get(position).getMaskedCard());
+
+        }
+//Log.e("masked", mDataset.get(position).getRrnNo());
     }
 
     public void addItem(Datum dataObj, int index) {
