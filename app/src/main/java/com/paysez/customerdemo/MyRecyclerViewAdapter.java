@@ -18,7 +18,7 @@ public class MyRecyclerViewAdapter extends RecyclerView
         .Adapter<MyRecyclerViewAdapter
         .DataObjectHolder> {
     private static String LOG_TAG = "MyRecyclerViewAdapter";
-    private List<Datum> mDataset;
+    private List<LocalData> mDataset;
     private static MyClickListener myClickListener;
 
     public static class DataObjectHolder extends RecyclerView.ViewHolder
@@ -58,7 +58,7 @@ public class MyRecyclerViewAdapter extends RecyclerView
         this.myClickListener = myClickListener;
     }
 
-    public MyRecyclerViewAdapter(List<Datum> myDataset) {
+    public MyRecyclerViewAdapter(List<LocalData> myDataset) {
         mDataset = myDataset;
     }
 
@@ -143,7 +143,7 @@ public class MyRecyclerViewAdapter extends RecyclerView
 //Log.e("masked", mDataset.get(position).getRrnNo());
     }
 
-    public void addItem(Datum dataObj, int index) {
+    public void addItem(LocalData dataObj, int index) {
         mDataset.add(dataObj);
         notifyItemInserted(index);
     }

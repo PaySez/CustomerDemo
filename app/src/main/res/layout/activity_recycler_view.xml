@@ -3,9 +3,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RecyclerViewActivity">
+
+    <LinearLayout
+        android:id="@+id/first_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="sort by Amount">
+
+        </Button>
+        <Button
+            android:id="@+id/sort_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="sort by date Ascending">
+
+        </Button>
+
+
+
+        <Button
+            android:id="@+id/decs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="sort by date Descending">
+
+        </Button>
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/my_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/first_layout"
         android:scrollbars="vertical" />
 </RelativeLayout>
