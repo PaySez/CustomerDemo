@@ -97,6 +97,7 @@ public class RecyclerViewActivity extends Activity {
             String transType = MainList.get(i).getTransType();
             String uniqueId = MainList.get(i).getUniqueId();
             String transStatus = MainList.get(i).getTransStatus();
+            String trans_data_time = MainList.get(i).getTransDatetime();
             if (status == null)
                 status = "null";
             if (linkExpiryStatus == null)
@@ -127,6 +128,8 @@ public class RecyclerViewActivity extends Activity {
                 uniqueId = "null";
             if (transStatus == null)
                 transStatus = "null";
+            if (trans_data_time == null)
+                trans_data_time = "null";
             LocalData localData = new LocalData();
             localData.setAmount(amount);
             localData.setLinkCreationDate(linkCreationDate);
@@ -143,6 +146,7 @@ public class RecyclerViewActivity extends Activity {
             localData.setTransStatus(transStatus);
             localData.setTransType(transType);
             localData.setUniqueId(uniqueId);
+            localData.setTransDatetime(trans_data_time);
             ListDAO listDAO = db.getListDao();
             listDAO.insertAll(localData);
         }

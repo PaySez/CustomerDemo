@@ -25,7 +25,7 @@ public class MyRecyclerViewAdapter extends RecyclerView
             implements View
             .OnClickListener {
         TextView merchant_name, unique_id, amount, purchase_purpose, trans_id, trans_status, link_creation_date, link_expiry_date, paylink_url, link_expiry_status, pay_status_code;
-        TextView rrn_no, trans_type, masked_card;
+        TextView rrn_no,trans_type,masked_card,trans_datetime;
 
         public DataObjectHolder(View itemView) {
             super(itemView);
@@ -43,7 +43,7 @@ public class MyRecyclerViewAdapter extends RecyclerView
             rrn_no = itemView.findViewById(R.id.rrn_no);
             trans_type = itemView.findViewById(R.id.trans_type);
             masked_card = itemView.findViewById(R.id.masked_card);
-
+            trans_datetime = itemView.findViewById(R.id.trans_datetime);
             Log.i(LOG_TAG, "Adding Listener");
             itemView.setOnClickListener(this);
         }
@@ -138,6 +138,14 @@ public class MyRecyclerViewAdapter extends RecyclerView
         } else {
 
             holder.masked_card.setText("Masked Card " + mDataset.get(position).getMaskedCard());
+
+        }
+        if ((mDataset.get(position).getTransDatetime() == null)) {
+            holder.trans_datetime.setText("Transaction Data & Time " + "Not Found");
+
+        } else {
+
+            holder.trans_datetime.setText("Transaction Data & Time " + mDataset.get(position).getTransDatetime());
 
         }
 //Log.e("masked", mDataset.get(position).getRrnNo());

@@ -93,7 +93,10 @@ public class LocalData {
     @Expose
     private String transType;
 
-
+    @ColumnInfo(name = "trans_data_time")
+    @SerializedName("trans_datetime")
+    @Expose
+    private String transDatetime;
 
     @ColumnInfo(name = "masked_card")
     @SerializedName("masked_card")
@@ -166,7 +169,12 @@ public class LocalData {
     public void setLinkCreationDate(String linkCreationDate) {
         this.linkCreationDate = linkCreationDate;
     }
-
+    public void setTransDatetime(String transDatetime) {
+        this.transDatetime = transDatetime;
+    }
+    public String getTransDatetime() {
+        return transDatetime;
+    }
     public String getLinkExpiryDate() {
         return this.linkExpiryDate;
     }
