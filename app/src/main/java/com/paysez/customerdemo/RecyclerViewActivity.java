@@ -19,10 +19,10 @@ public class RecyclerViewActivity extends Activity {
     private static String LOG_TAG = "RecyclerViewActivity";
     String data;
     Database db;
+    Button sort_date, amount, decs;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    Button sort_date,amount,decs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,20 +45,15 @@ public class RecyclerViewActivity extends Activity {
         sort_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 sortByDate();
             }
         });
-
         amount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 sortByAmount();
             }
         });
-
         decs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,7 +79,6 @@ public class RecyclerViewActivity extends Activity {
         for (int i = 0; i < MainList.size(); i++) {
             String status = MainList.get(i).getStatus();
             String linkExpiryStatus = MainList.get(i).getLinkExpiryStatus();
-            String payStatusCode = MainList.get(i).getPayStatusCode();
             String amount = MainList.get(i).getAmount();
             String linkCreationDate = MainList.get(i).getLinkCreationDate();
             String expiryDate = MainList.get(i).getLinkExpiryDate();
@@ -98,12 +92,12 @@ public class RecyclerViewActivity extends Activity {
             String uniqueId = MainList.get(i).getUniqueId();
             String transStatus = MainList.get(i).getTransStatus();
             String trans_data_time = MainList.get(i).getTransDatetime();
+            String email = MainList.get(i).getEmail();
+            String mobileNo = MainList.get(i).getMobile_no();
             if (status == null)
                 status = "null";
             if (linkExpiryStatus == null)
                 linkExpiryStatus = "null";
-            if (payStatusCode == null)
-                payStatusCode = "null";
             if (amount == null)
                 amount = "null";
             if (linkCreationDate == null)
@@ -130,6 +124,10 @@ public class RecyclerViewActivity extends Activity {
                 transStatus = "null";
             if (trans_data_time == null)
                 trans_data_time = "null";
+            if (mobileNo == null)
+                mobileNo = "null";
+            if (email == null)
+                email = "null";
             LocalData localData = new LocalData();
             localData.setAmount(amount);
             localData.setLinkCreationDate(linkCreationDate);
@@ -138,7 +136,8 @@ public class RecyclerViewActivity extends Activity {
             localData.setMaskedCard(maskedCard);
             localData.setMerchantName(merchantName);
             localData.setPaylinkUrl(paylinkUrl);
-            localData.setPayStatusCode(payStatusCode);
+            localData.setEmail(email);
+            localData.setMobile_no(mobileNo);
             localData.setPurchasePurpose(purchasePurpose);
             localData.setRrnNo(rrnNo);
             localData.setStatus(status);
@@ -155,41 +154,23 @@ public class RecyclerViewActivity extends Activity {
         List<LocalData> localDataList = db.getListDao().getAll();
         return localDataList;
     }
-
     private List<LocalData> sortByDate() {
-
         mRecyclerView.setAdapter(null);
-
-
         List<LocalData> localDataList = db.getListDao().sortByDate();
-
         mAdapter = new MyRecyclerViewAdapter(localDataList);
         mRecyclerView.setAdapter(mAdapter);
         return localDataList;
     }
-
-
-
     private List<LocalData> sortByDateDESC() {
-
         mRecyclerView.setAdapter(null);
-
-
         List<LocalData> localDataList = db.getListDao().sortByDateDescending();
-
         mAdapter = new MyRecyclerViewAdapter(localDataList);
         mRecyclerView.setAdapter(mAdapter);
         return localDataList;
     }
-
-
     private List<LocalData> sortByAmount() {
-
         mRecyclerView.setAdapter(null);
-
-
         List<LocalData> localDataList = db.getListDao().sortByDateAmount();
-
         mAdapter = new MyRecyclerViewAdapter(localDataList);
         mRecyclerView.setAdapter(mAdapter);
         return localDataList;

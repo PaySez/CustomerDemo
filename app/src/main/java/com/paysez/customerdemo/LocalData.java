@@ -103,9 +103,32 @@ public class LocalData {
     @Expose
     private String maskedCard;
 
+    @ColumnInfo(name = "mobile_no")
+    @Expose
+    @SerializedName("mobile_no")
+    private String mobile_no;
+
+    @ColumnInfo(name = "email")
+    @SerializedName("email")
+    @Expose
+    private String email;
+
+
     public LocalData() {
     }
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
+    public String getMobile_no() {
+        return mobile_no;
+    }
+    public void setMobile_no(String mobile_no) {
+        this.mobile_no = mobile_no;
+    }
     public String getStatus() {
         return this.status;
     }

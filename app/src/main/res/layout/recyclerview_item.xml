@@ -85,13 +85,6 @@
         android:text="Small Text"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <TextView
-        android:id="@+id/pay_status_code"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="5dp"
-        android:text="Small Text"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
         android:id="@+id/rrn_no"
@@ -119,6 +112,21 @@
         android:textAppearance="?android:attr/textAppearanceSmall" />
     <TextView
         android:id="@+id/trans_datetime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    <TextView
+        android:id="@+id/phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingBottom="5dp"

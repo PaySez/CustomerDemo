@@ -24,9 +24,9 @@ public class MyRecyclerViewAdapter extends RecyclerView
     public static class DataObjectHolder extends RecyclerView.ViewHolder
             implements View
             .OnClickListener {
-        TextView merchant_name, unique_id, amount, purchase_purpose, trans_id, trans_status, link_creation_date, link_expiry_date, paylink_url, link_expiry_status, pay_status_code;
+        TextView merchant_name, unique_id, amount, purchase_purpose, trans_id, trans_status, link_creation_date, link_expiry_date, paylink_url, link_expiry_status;
         TextView rrn_no,trans_type,masked_card,trans_datetime;
-
+        TextView phone,email;
         public DataObjectHolder(View itemView) {
             super(itemView);
             merchant_name = itemView.findViewById(R.id.merchant_name);
@@ -39,7 +39,8 @@ public class MyRecyclerViewAdapter extends RecyclerView
             trans_id = itemView.findViewById(R.id.trans_id);
             link_creation_date = itemView.findViewById(R.id.link_creation_date);
             link_expiry_date = itemView.findViewById(R.id.link_expiry_date);
-            pay_status_code = itemView.findViewById(R.id.pay_status_code);
+            phone = itemView.findViewById(R.id.phone);
+            email = itemView.findViewById(R.id.email);
             rrn_no = itemView.findViewById(R.id.rrn_no);
             trans_type = itemView.findViewById(R.id.trans_type);
             masked_card = itemView.findViewById(R.id.masked_card);
@@ -110,7 +111,7 @@ public class MyRecyclerViewAdapter extends RecyclerView
         holder.paylink_url.setText("paylink_url " + mDataset.get(position).getPaylinkUrl());
 
         holder.link_expiry_status.setText("link_expiry_status " + mDataset.get(position).getLinkExpiryStatus());
-        holder.pay_status_code.setText("pay_status_code " + mDataset.get(position).getPayStatusCode());
+
 
 
         if ((mDataset.get(position).getRrnNo() == null)) {
@@ -149,6 +150,26 @@ public class MyRecyclerViewAdapter extends RecyclerView
 
         }
 //Log.e("masked", mDataset.get(position).getRrnNo());
+
+
+        if ((mDataset.get(position).getEmail() == null)) {
+            holder.email.setText("Email " + "Not Found");
+
+        } else {
+
+            holder.email.setText("Email " + mDataset.get(position).getEmail());
+
+        }
+
+
+        if ((mDataset.get(position).getMobile_no() == null)) {
+            holder.phone.setText("Mobile " + "Not Found");
+
+        } else {
+
+            holder.phone.setText("Mobile " + mDataset.get(position).getMobile_no());
+
+        }
     }
 
     public void addItem(LocalData dataObj, int index) {
